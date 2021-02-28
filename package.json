@@ -1,0 +1,42 @@
+{
+  "name": "create-nunjucks-app",
+  "version": "0.1.0",
+  "description": "Npm initializer to create an express app with nunjucks as template",
+  "main": "index.js",
+  "publishConfig": {
+    "registry": "https://nexus.keltroth.net/repository/npm-hosted/"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "bin": {
+    "create-nunjucks-app": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.keltroth.net/nodejs/create-nunjucks-app.git"
+  },
+  "author": "Django Janny <contact@djangojanny.net>",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "lib",
+    "project"
+  ],
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "commander": "^7.1.0",
+    "cross-spawn": "^7.0.3",
+    "envinfo": "^7.7.4",
+    "express": "^4.17.1",
+    "express-nunjucks": "^2.2.5",
+    "express-session": "^1.17.1",
+    "fs-extra": "^9.1.0",
+    "nunjucks": "^3.2.3",
+    "os": "^0.1.1",
+    "winston": "^3.3.3"
+  }
+}
