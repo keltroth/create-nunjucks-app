@@ -12,6 +12,7 @@ const {copyFiles} = require('./lib/files');
 const {install} = require('./lib/npm');
 
 (async () => {
+    global.homedir = module.path;
 
     let projectName = '';
 

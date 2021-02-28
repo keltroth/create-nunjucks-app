@@ -24,7 +24,8 @@
   "files": [
     "index.js",
     "lib",
-    "project"
+    "project",
+    "project/base/.npmrc"
   ],
   "dependencies": {
     "chalk": "^4.1.0",
