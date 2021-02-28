@@ -13,7 +13,7 @@ const {install} = require('./lib/npm');
 
 (async () => {
 
-    let projectName;
+    let projectName = '';
 
     const packageJson = require('./package.json');
 
