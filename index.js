@@ -5,9 +5,11 @@ const envinfo = require('envinfo');
 const path = require('path');
 const fs = require('fs-extra');
 const os = require('os');
-const run = require('./lib/command');
+
 const addMongoDB = require('./lib/options/mongodb');
 const addTailWind = require('./lib/options/tailwind');
+const {copyFiles} = require('./lib/files');
+const {install} = require('./lib/npm');
 
 (async () => {
 
@@ -19,7 +21,7 @@ const addTailWind = require('./lib/options/tailwind');
         version: '0.0.1',
         author: 'Nobody',
         type: 'module',
-        description: 'A new Nunjucks Project',
+        description: 'A new NodeJS+Express+Nunjucks Project',
         scripts: {
             'start': 'cross-env APP_ENV=development PORT=4000 npm-run-all --parallel dev:*',
             'dev:run': 'nodemon server',
@@ -143,60 +145,6 @@ const addTailWind = require('./lib/options/tailwind');
     } catch (err) {
         console.log({err});
     }
-
-    function install(root, dependencies, options) {
-        process.chdir(root);
-        const command = 'npm';
-        let args = [
-            'install',
-            '--loglevel',
-            'error',
-        ];
-
-        if (options.verbose) {
-            args.push('--verbose');
-        }
-
-        if (options.devDependencies) {
-            args.push('--save-dev');
-        } else {
-            args.push('--save');
-        }
-
-        args.push(dependencies);
-
-        args = args.flat();
-        return run(command, args);
-    }
-
-    function copyFiles(files, dest, options) {
-        const commandCopy = 'cp';
-
-        let argsCopy = [];
-
-        if (options.recursive) {
-            argsCopy.push('-R');
-        }
-        if (options.verbose) {
-            argsCopy.push('-v');
-        }
-
-        files = [files].flat();
-
-        for (let i = 0; i < files.length; i++) {
-            if (!files[i].startsWith('/')) {
-                files[i] = __dirname + '/' + files[i];
-            }
-        }
-
-        argsCopy.push(files);
-        argsCopy.push(dest);
-
-        argsCopy = argsCopy.flat();
-        return run(commandCopy, argsCopy);
-    }
-
-
 
 })();
 
