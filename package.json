@@ -1,6 +1,6 @@
 {
   "name": "create-nunjucks-app",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Npm initializer to create an express app with nunjucks as template",
   "main": "index.js",
   "engines": {
