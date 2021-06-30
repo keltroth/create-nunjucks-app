@@ -1,7 +1,6 @@
 import express from 'express';
 import session from 'express-session';
 import morgan from 'morgan';
-import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import favicon from 'serve-favicon';
 import nunjucks from 'express-nunjucks';
@@ -16,8 +15,8 @@ app.use(morgan('combined', { stream: logger.stream }));
 
 // FIXME: change your app secret
 app.use(session({secret: 'your app secret', saveUninitialized: true, resave: true}));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
 app.use(favicon(`${resources}/static/images/favicon.ico`));
