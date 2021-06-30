@@ -4,7 +4,11 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     res.render('index', {
-        title: 'Welcome',
+        title: 'Welcome to your nunjucks project!',
+        links: {
+            nunjucksDocs: 'https://mozilla.github.io/nunjucks/templating.html',
+            repository: 'https://github.com/keltroth/create-nunjucks-app/'
+        }
     });
 });
 
