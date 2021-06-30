@@ -129,13 +129,14 @@ const {install} = require('./lib/npm');
         await addTailWind(dependencies, devDependencies, destPackageJson, files, root);
     }
 
-    try {
-        options.verbose && console.log(chalk.bold(`${step++}. Copying options files`));
-        await copyFiles(files, root, {recursive: true, verbose: options.verbose});
-    } catch (err) {
-        console.log({err});
+    if (files.length > 0) {
+        try {
+            options.verbose && console.log(chalk.bold(`${step++}. Copying options files`));
+            await copyFiles(files, root, {recursive: true, verbose: options.verbose});
+        } catch (err) {
+            console.log({err});
+        }
     }
-
     options.verbose && console.log(chalk.bold(`${step++}. Generating package.json`));
     fs.writeFileSync(path.join(root, 'package.json'), JSON.stringify(destPackageJson, null, 2) + os.EOL);
 
