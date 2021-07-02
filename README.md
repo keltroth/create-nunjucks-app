@@ -20,9 +20,11 @@ You can add `tailwind` and `postcss` to your project with `--tailwind` options.
 
 2. MongoDB
    
-You can add `mongodb` to your project with `--database mongodb` options.\
-It also adds a minimalist dao to access your collection.
+You can add `mongodb` to your project with `--database mongodb` options.
 
+2. MongoDB
+
+You can add `mariadb` to your project with `--database mariadb` options.
 
 ## Examples :
 
@@ -35,8 +37,3 @@ npm init nunjucks-app -- --tailwind my-project
 ```bash
 npm publish
 ```
-
-## TODO :
-
-1. add `--database mariadb` options
-2. ...

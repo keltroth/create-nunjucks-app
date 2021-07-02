@@ -6,6 +6,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const os = require('os');
 
+const addMariaDB = require('./lib/options/mariadb');
 const addMongoDB = require('./lib/options/mongodb');
 const addTailWind = require('./lib/options/tailwind');
 const {copyFiles} = require('./lib/files');
@@ -20,7 +21,7 @@ const {install} = require('./lib/npm');
 
     const destPackageJson = {
         version: '0.0.1',
-        author: 'Nobody',
+        author: 'Jane Doe',
         type: 'module',
         description: 'A new NodeJS+Express+Nunjucks Project',
         scripts: {
@@ -70,6 +71,7 @@ const {install} = require('./lib/npm');
         .option('--tailwind', 'adds tailwind')
         .option('--database <database>', 'adds a database value : mongodb or mariadb')
         .option('--author <author>', 'author name')
+        .option('--description <description>', 'description of your app for package.json')
         .parse(process.argv);
 
 
@@ -77,6 +79,10 @@ const {install} = require('./lib/npm');
 
     if (options.author) {
         destPackageJson.author = options.author;
+    }
+
+    if (options.description) {
+        destPackageJson.description = options.description;
     }
 
     if (options.info || program.info) {
@@ -105,7 +111,6 @@ const {install} = require('./lib/npm');
 
     options.verbose && console.log(chalk.bold(`${step++}. Creating directories`));
     const root = path.resolve(projectName);
-    const appName = path.basename(root);
     fs.ensureDirSync(projectName);
 
     try {
@@ -119,6 +124,7 @@ const {install} = require('./lib/npm');
 
     options.verbose && console.log(chalk.bold(`${step++}. Managing options (Tailwind, MongoDB, MariaDB, ...)`));
     if (options.database === 'mariadb') {
+        await addMariaDB(dependencies, devDependencies, destPackageJson, files, root);
     }
 
     if (options.database === 'mongodb') {
@@ -126,7 +132,7 @@ const {install} = require('./lib/npm');
     }
 
     if (options.tailwind) {
-        await addTailWind(dependencies, devDependencies, destPackageJson, files, root);
+        await addTailWind(dependencies, devDependencies, destPackageJson, files);
     }
 
     if (files.length > 0) {
