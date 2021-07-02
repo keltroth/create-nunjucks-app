@@ -22,7 +22,7 @@ You can add `tailwind` and `postcss` to your project with `--tailwind` options.
    
 You can add `mongodb` to your project with `--database mongodb` options.
 
-2. MongoDB
+2. MariaDB
 
 You can add `mariadb` to your project with `--database mariadb` options.
 
