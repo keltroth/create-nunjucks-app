@@ -1,6 +1,6 @@
 {
   "name": "create-nunjucks-app",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Npm initializer to create an express app with nunjucks as template",
   "main": "index.js",
   "engines": {
@@ -15,6 +15,11 @@
   },
   "author": "Django Janny <contact@djangojanny.net>",
   "license": "MIT",
+  "keywords": [
+    "express",
+    "nunjucks",
+    "tailwind"
+  ],
   "files": [
     "index.js",
     "lib",
