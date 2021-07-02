@@ -1,6 +1,6 @@
 # Nunjucks + Express + NodeJS
 
-/!\ Under development. DO NOT USE YET.
+⚠️ Under development. USE WITH CARE. ⚠️
 
 This project aims to build a new project based on Nunjucks, ExpressJS et NodeJS.
 
