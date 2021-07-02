@@ -1,6 +1,6 @@
 {
   "name": "create-nunjucks-app",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "description": "Npm initializer to create an express app with nunjucks as template",
   "main": "index.js",
   "engines": {
@@ -21,10 +21,11 @@
     "tailwind"
   ],
   "files": [
+    "README.md",
+    "LICENSE",
     "index.js",
-    "lib",
-    "project",
-    "project/base/.npmrc"
+    "lib/",
+    "project/"
   ],
   "dependencies": {
     "chalk": "^4.1.1",
