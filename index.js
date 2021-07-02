@@ -1,23 +1,24 @@
 #!/usr/bin/env node
-const {Command} = require('commander');
-const chalk = require('chalk');
-const envinfo = require('envinfo');
-const path = require('path');
-const fs = require('fs-extra');
-const os = require('os');
 
-const addMariaDB = require('./lib/options/mariadb');
-const addMongoDB = require('./lib/options/mongodb');
-const addTailWind = require('./lib/options/tailwind');
-const {copyFiles} = require('./lib/files');
-const {install} = require('./lib/npm');
+import {Command} from 'commander';
+import chalk from 'chalk';
+import envinfo from 'envinfo';
+import path from 'path';
+import fs from 'fs-extra';
+import os from 'os';
+import addMariaDB from './options/mariadb.js';
+import addMongoDB from './options/mongodb.js';
+import addTailWind from './options/tailwind.js';
+import { copyFiles } from './lib/files.js';
+import { install, loadPackage } from './lib/npm.js';
+
 
 (async () => {
-    global.homedir = module.path;
+    global.homedir = path.resolve('.');
 
     let projectName = '';
 
-    const packageJson = require('./package.json');
+    const packageJson = await loadPackage();
 
     const destPackageJson = {
         version: '0.0.1',
@@ -60,7 +61,6 @@ const {install} = require('./lib/npm');
     const program = new Command(packageJson.name)
         .version(packageJson.version)
         .arguments('<project-directory>')
-        .version(packageJson.version)
         .action(name => {
             projectName = name;
             destPackageJson.name = name;
@@ -132,7 +132,7 @@ const {install} = require('./lib/npm');
     }
 
     if (options.tailwind) {
-        await addTailWind(dependencies, devDependencies, destPackageJson, files);
+        await addTailWind(dependencies, devDependencies, destPackageJson, files, root);
     }
 
     if (files.length > 0) {

@@ -1,8 +1,9 @@
 {
   "name": "create-nunjucks-app",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Npm initializer to create an express app with nunjucks as template",
   "main": "index.js",
+  "type": "module",
   "engines": {
     "node": ">=10"
   },
@@ -33,6 +34,7 @@
     "cross-spawn": "^7.0.3",
     "envinfo": "^7.8.1",
     "fs-extra": "^10.0.0",
+    "glob": "^7.1.7",
     "os": "^0.1.1",
     "winston": "^3.3.3"
   }

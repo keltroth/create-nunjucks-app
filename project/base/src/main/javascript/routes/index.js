@@ -2,6 +2,9 @@ import express from 'express';
 
 const router = express.Router();
 
+/**
+ * Default get route
+ */
 router.get('/', (req, res) => {
     res.render('index', {
         title: 'Welcome to your nunjucks project!',
