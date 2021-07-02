@@ -9,10 +9,10 @@ It is based on `npm init` command.
 ## Create a new project
 
 ```bash
-npm init nunjucks-app
+npm init nunjucks-app -- [--info] [--verbose] [--author "Your name"] [--description "Your project description"] [--tailwind] [--database mongodb|mariadb] project-name
 ```
 
-### Options
+### Optional features
 
 1. Tailwind
 
@@ -22,18 +22,6 @@ You can add `tailwind` and `postcss` to your project with `--tailwind` options.
    
 You can add `mongodb` to your project with `--database mongodb` options.
 
-2. MariaDB
+3. MariaDB
 
 You can add `mariadb` to your project with `--database mariadb` options.
-
-## Examples :
-
-```bash
-npm init nunjucks-app -- --tailwind my-project 
-```
-
-## Publishing
-
-```bash
-npm publish
-```
