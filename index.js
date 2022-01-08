@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import {Command} from 'commander';
+import { Command } from 'commander';
 import chalk from 'chalk';
 import envinfo from 'envinfo';
 import path from 'path';
@@ -11,10 +11,10 @@ import addMongoDB from './options/mongodb.js';
 import addTailWind from './options/tailwind.js';
 import { copyFiles } from './lib/files.js';
 import { install, loadPackage } from './lib/npm.js';
-
+import { __dirname } from './node.common.cjs';
 
 (async () => {
-    global.homedir = path.resolve('.');
+    global.homedir = __dirname;
 
     let projectName = '';
 
@@ -56,7 +56,7 @@ import { install, loadPackage } from './lib/npm.js';
         'npm-run-all',
     ];
 
-    let files = ['project/base/*', 'project/base/.npmrc', 'project/base/.eslint*'];
+    let files = ['project/base/*'];
 
     const program = new Command(packageJson.name)
         .version(packageJson.version)
@@ -99,7 +99,7 @@ import { install, loadPackage } from './lib/npm.js';
                 {
                     duplicates: true,
                     showNotFound: true,
-                }
+                },
             );
 
         console.log(infos);
@@ -115,9 +115,9 @@ import { install, loadPackage } from './lib/npm.js';
 
     try {
         options.verbose && console.log(chalk.bold(`${step++}. Copying files (index.js, logger.js, ...)`));
-        await copyFiles(files, root, {recursive: true, verbose: options.verbose});
+        await copyFiles(files, root, { recursive: true, verbose: options.verbose });
     } catch (err) {
-        console.log({err});
+        console.log({ err });
     }
 
     files = [];
@@ -138,9 +138,9 @@ import { install, loadPackage } from './lib/npm.js';
     if (files.length > 0) {
         try {
             options.verbose && console.log(chalk.bold(`${step++}. Copying options files`));
-            await copyFiles(files, root, {recursive: true, verbose: options.verbose});
+            await copyFiles(files, root, { recursive: true, verbose: options.verbose });
         } catch (err) {
-            console.log({err});
+            console.log({ err });
         }
     }
     options.verbose && console.log(chalk.bold(`${step++}. Generating package.json`));
@@ -148,10 +148,10 @@ import { install, loadPackage } from './lib/npm.js';
 
     try {
         options.verbose && console.log(chalk.bold(`${step++}. Launching npm install`));
-        await install(root, dependencies, {verbose: options.verbose});
-        await install(root, devDependencies, {verbose: options.verbose, devDependencies: true});
+        await install(root, dependencies, { verbose: options.verbose });
+        await install(root, devDependencies, { verbose: options.verbose, devDependencies: true });
     } catch (err) {
-        console.log({err});
+        console.log({ err });
     }
 
 })();
